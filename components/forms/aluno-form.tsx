@@ -94,7 +94,7 @@ export function AlunoForm({ onClose, onSave, editingAluno }: AlunoFormProps) {
     try {
       // Prepare data for API
       const apiData = {
-        escolaId: "escola123", // You can make this dynamic
+        escolaId: "cmdsw8c390000o1084nanq19w", // Using the actual school ID from database
         nome: formData.nome,
         dataNascimento: formData.dataNascimento || undefined,
         cpf: formData.cpf || undefined,
