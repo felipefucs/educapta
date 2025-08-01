@@ -30,7 +30,7 @@ export default function AlunosPage() {
     try {
       setLoading(true)
       const response = await getAlunos({
-        escola_id: "escola123", // You can make this dynamic based on user's school
+        escola_id: "cmdsw8c390000o1084nanq19w", // Using the actual school ID from database
         status: selectedStatus !== "todos" ? selectedStatus : undefined,
         search: searchTerm || undefined,
         page: pagination.page,
