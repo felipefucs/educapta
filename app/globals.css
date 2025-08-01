@@ -1,0 +1,230 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Cores base do sistema - Tema Sóbrio */
+    --background: 0 0% 100%; /* Branco puro */
+    --foreground: 222 84% 5%; /* Cinza muito escuro */
+    --card: 0 0% 100%; /* Branco para cards */
+    --card-foreground: 222 84% 5%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 84% 5%;
+
+    /* Cores primárias - Cinza Sóbrio */
+    --primary: 215 16% 47%; /* #64748b - Cinza principal */
+    --primary-foreground: 0 0% 100%;
+
+    /* Cores secundárias - Roxo Muito Sutil */
+    --secondary: 249 58% 90%; /* #e9e5ff - Roxo claro sutil */
+    --secondary-foreground: 215 25% 27%;
+
+    /* Cores de destaque - Azul Acinzentado */
+    --accent: 215 25% 27%; /* #334155 - Azul escuro */
+    --accent-foreground: 0 0% 100%;
+
+    /* Cores neutras */
+    --muted: 210 40% 98%; /* #f8fafc - Azul muito claro */
+    --muted-foreground: 215 16% 47%; /* #64748b */
+    --border: 214 32% 91%; /* #e2e8f0 - Azul suave */
+    --input: 210 40% 98%; /* #f8fafc - Azul muito claro */
+    --ring: 215 16% 47%; /* #64748b */
+    --radius: 0.5rem;
+
+    /* Cores destrutivas */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    /* Cores da sidebar - Tema Sóbrio */
+    --sidebar-background: 215 28% 17%; /* #1e293b - Azul escuro */
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 0 0% 100%;
+    --sidebar-primary-foreground: 215 28% 17%;
+    --sidebar-accent: 215 25% 27%; /* #334155 - Azul médio */
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 215 25% 27%;
+    --sidebar-ring: 215 16% 47%;
+  }
+
+  .dark {
+    /* Modo escuro */
+    --background: 222 84% 5%; /* #0f172a */
+    --foreground: 0 0% 100%;
+    --card: 215 28% 17%; /* #1e293b */
+    --card-foreground: 0 0% 100%;
+    --popover: 215 28% 17%;
+    --popover-foreground: 0 0% 100%;
+
+    /* Cores primárias no modo escuro */
+    --primary: 215 16% 47%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Cores secundárias no modo escuro */
+    --secondary: 215 28% 17%;
+    --secondary-foreground: 0 0% 100%;
+
+    /* Cores de destaque no modo escuro */
+    --accent: 215 25% 27%;
+    --accent-foreground: 0 0% 100%;
+
+    /* Cores neutras no modo escuro */
+    --muted: 215 28% 17%;
+    --muted-foreground: 217 11% 65%;
+    --border: 215 28% 17%;
+    --input: 215 28% 17%;
+    --ring: 215 16% 47%;
+
+    /* Cores destrutivas no modo escuro */
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 0 0% 98%;
+
+    /* Cores da sidebar no modo escuro */
+    --sidebar-background: 215 28% 17%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 0 0% 100%;
+    --sidebar-primary-foreground: 215 28% 17%;
+    --sidebar-accent: 215 25% 27%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 215 25% 27%;
+    --sidebar-ring: 215 16% 47%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Estilos customizados para o tema Sóbrio - Design System */
+.educbank-gradient-primary {
+  background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+}
+
+.educbank-gradient-secondary {
+  background: linear-gradient(135deg, #e9e5ff 0%, #d6ccff 100%);
+}
+
+.educbank-gradient-accent {
+  background: linear-gradient(135deg, #334155 0%, #1e293b 100%);
+}
+
+.educbank-card {
+  @apply bg-white border border-slate-200 shadow-sm hover:shadow-md transition-shadow duration-200;
+}
+
+.educbank-button-primary {
+  @apply bg-primary-500 hover:bg-primary-600 text-white font-medium px-4 py-2 rounded-md transition-colors duration-200;
+}
+
+.educbank-button-secondary {
+  @apply bg-secondary-500 hover:bg-secondary-600 text-secondary-800 font-medium px-4 py-2 rounded-md transition-colors duration-200;
+}
+
+.educbank-button-accent {
+  @apply bg-accent-600 hover:bg-accent-700 text-white font-medium px-4 py-2 rounded-md transition-colors duration-200;
+}
+
+.educbank-status-success {
+  @apply bg-success-50 text-success-600 border-success-500;
+}
+
+.educbank-status-warning {
+  @apply bg-warning-50 text-warning-600 border-warning-500;
+}
+
+.educbank-status-error {
+  @apply bg-error-50 text-error-600 border-error-500;
+}
+
+.educbank-status-info {
+  @apply bg-info-50 text-info-600 border-info-500;
+}
+
+/* Animações suaves */
+.educbank-transition {
+  @apply transition-all duration-200 ease-in-out;
+}
+
+/* Hover effects para cards */
+.educbank-hover-lift {
+  @apply hover:transform hover:-translate-y-1 hover:shadow-md transition-all duration-200;
+}
+
+/* Gradientes para gráficos e elementos visuais */
+.educbank-progress-bg {
+  background: linear-gradient(90deg, #64748b 0%, #9b87f5 100%);
+}
+
+/* Estilo para elementos de destaque */
+.educbank-highlight {
+  @apply bg-gradient-to-r from-primary-500 to-secondary-500 bg-clip-text text-transparent font-semibold;
+}
+
+/* Cores específicas do tema sóbrio */
+.educbank-slate {
+  color: #64748b;
+}
+
+.educbank-purple-subtle {
+  color: #9b87f5;
+}
+
+.educbank-blue-gray {
+  color: #334155;
+}
+
+.educbank-neutral {
+  color: #71717a;
+}
+
+.educbank-bg-slate {
+  background-color: #64748b;
+}
+
+.educbank-bg-purple-subtle {
+  background-color: #9b87f5;
+}
+
+.educbank-bg-blue-gray {
+  background-color: #334155;
+}
+
+.educbank-bg-neutral {
+  background-color: #71717a;
+}
+
+.educbank-bg-light {
+  background-color: #f8fafc;
+}
+
+/* Estilos específicos para inputs - mais sóbrios */
+.educbank-input {
+  @apply bg-slate-50 border-slate-200 focus:border-slate-400 focus:ring-slate-400;
+}
+
+/* Estilos para badges - tons sóbrios */
+.educbank-badge-primary {
+  @apply bg-slate-500 text-white;
+}
+
+.educbank-badge-secondary {
+  @apply bg-secondary-300 text-secondary-800;
+}
+
+.educbank-badge-accent {
+  @apply bg-accent-600 text-white;
+}
+
+/* Estilos para elementos de status com cores mais suaves */
+.educbank-status-neutral {
+  @apply bg-slate-50 text-slate-600 border-slate-200;
+}
+
+.educbank-status-subtle {
+  @apply bg-secondary-50 text-secondary-700 border-secondary-200;
+}

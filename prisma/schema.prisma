@@ -1,0 +1,92 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// School model
+model Escola {
+  id        String   @id @default(cuid())
+  nome      String
+  endereco  String?
+  telefone  String?
+  email     String?
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  // Relations
+  alunos Aluno[]
+  turmas Turma[]
+
+  @@map("escolas")
+}
+
+// Class/Grade model based on SQL structure
+model Turma {
+  id            String    @id @default(cuid())
+  escolaId      String    @map("escola_id")
+  nome          String    @db.VarChar(100)
+  serie         String    @db.VarChar(50)
+  periodo       String    @db.VarChar(20) // matutino, vespertino, integral
+  capacidade    Int
+  vagasOcupadas Int       @default(0) @map("vagas_ocupadas")
+  anoLetivo     Int       @map("ano_letivo")
+  professor     String?   @db.VarChar(100)
+  sala          String?   @db.VarChar(50)
+  ativo         Boolean   @default(true)
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @updatedAt @map("updated_at")
+
+  // Relations
+  escola      Escola        @relation(fields: [escolaId], references: [id], onDelete: Cascade)
+  alunoTurmas AlunoTurma[]
+
+  @@map("turmas")
+}
+
+// Student model with many-to-many relationship to Turma
+model Aluno {
+  id                    String    @id @default(cuid())
+  escolaId              String    @map("escola_id")
+  nome                  String
+  dataNascimento        DateTime? @map("data_nascimento")
+  cpf                   String?   @unique
+  endereco              String?
+  turmaId               String?   @map("turma_id") // For backward compatibility
+  turma                 String?   // For display purposes
+  necessidadesEspeciais String?   @map("necessidades_especiais")
+  medicamentos          String?
+  alergias              String?
+  contatoEmergencia     String?   @map("contato_emergencia")
+  status                String    @default("matriculado")
+  responsavel           String?
+  telefone              String?
+  email                 String?
+  createdAt             DateTime  @default(now()) @map("created_at")
+  updatedAt             DateTime  @updatedAt @map("updated_at")
+
+  // Relations
+  escola      Escola       @relation(fields: [escolaId], references: [id], onDelete: Cascade)
+  alunoTurmas AlunoTurma[]
+
+  @@map("alunos")
+}
+
+// Junction table for many-to-many relationship between Aluno and Turma
+model AlunoTurma {
+  id      String @id @default(cuid())
+  alunoId String @map("aluno_id")
+  turmaId String @map("turma_id")
+  ativo   Boolean @default(true)
+  dataMatricula DateTime @default(now()) @map("data_matricula")
+
+  // Relations
+  aluno Aluno @relation(fields: [alunoId], references: [id], onDelete: Cascade)
+  turma Turma @relation(fields: [turmaId], references: [id], onDelete: Cascade)
+
+  @@unique([alunoId, turmaId])
+  @@map("aluno_turma")
+}
